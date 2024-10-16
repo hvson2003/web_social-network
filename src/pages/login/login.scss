@@ -15,7 +15,7 @@
 
     .left {
       flex: 1;
-      background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)), url("https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600") center;
+      background: linear-gradient(rgba(39, 11, 96, 0.5), #270b6080), url("https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600") center;
       background-size: cover;
       padding: 50px;
       display: flex;
@@ -30,7 +30,9 @@
 
       p {}
 
-      span {}
+      span {
+        font-size: 14px;
+      }
 
       button {
         width: 50%;
