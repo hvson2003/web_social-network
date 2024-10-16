@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './register.scss'
 
 const Register = () => {
@@ -10,7 +11,9 @@ const Register = () => {
             Welcome to our social media, where you can connect, share, and engage with friends and communities. Join us and be part of a vibrant digital space!
           </p>
           <span>Do you have an account?</span>
-          <button>Login</button>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
         </div>
 
         <div className="right">
