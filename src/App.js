@@ -14,7 +14,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const currentUser = false;
+  const currentUser = true;
 
   const Layout = () => {
     return (
@@ -22,7 +22,9 @@ function App() {
         <NavBar />
         <div style={{ display: "flex" }}>
           <LeftBar />
-          <Outlet />
+          <div style={{ flex: 6 }}>
+            <Outlet />
+          </div>
           <RightBar />
         </div>
       </div>
@@ -42,7 +44,7 @@ function App() {
       path: "/",
       element: (
         <ProtectedRoute>
-          <Layout />,
+          <Layout />
         </ProtectedRoute>
       ),
       children: [
