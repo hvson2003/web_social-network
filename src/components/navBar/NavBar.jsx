@@ -20,7 +20,7 @@ const NavBar = () => {
     <div className="navBar">
       <div className="left">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span>Social Media</span>
+          <span>SocialNetwork</span>
         </Link>
         <HomeOutlinedIcon />
         {

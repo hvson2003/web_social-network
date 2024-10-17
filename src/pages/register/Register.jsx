@@ -6,9 +6,9 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Social Media</h1>
+          <h1>SocialNetwork</h1>
           <p>
-            Welcome to our social media, where you can connect, share, and engage with friends and communities. Join us and be part of a vibrant digital space!
+            Welcome to our social network, where you can connect, share, and engage with friends and communities. Join us and be part of a vibrant digital space!
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
