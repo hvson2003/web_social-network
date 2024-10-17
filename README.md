@@ -13,5 +13,3 @@
 - **Frontend**: Sử dụng React với Hooks và Context API để quản lý trạng thái.
   - **React-query**: Đồng bộ hóa dữ liệu server một cách hiệu quả.
   - **Axios**: Để xử lý các yêu cầu HTTP giữa client và backend.
-  - **CSS Modules / Tailwind**: (tùy dự án của bạn) để tạo kiểu dáng modular và dễ mở rộng.
-
