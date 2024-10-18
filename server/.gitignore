@@ -1,0 +1,18 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/*.log
+pids/*.pid
+
+# Environment variables
+.env*
+
+# NPM cache
+.npm
+
+# ESLint cache
+eslintcache
+
+# REPL history
+node_repl_history

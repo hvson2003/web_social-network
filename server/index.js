@@ -9,6 +9,7 @@ import commentRoutes from "./src/routes/comment_route.js";
 import likeRoutes from "./src/routes/like_route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import 'dotenv/config';
 
 // middlewares
 app.use((req, res, next) => {
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: process.env.CLIENT_URL,
 }));
 app.use(cookieParser());
 
