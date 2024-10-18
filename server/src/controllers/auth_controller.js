@@ -1,21 +1,22 @@
 import { db } from "../config/connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const register = (req, res) => {
-  const query = "SELECT * FROM users WHERE username = ?";
+  const sql = "SELECT * FROM users WHERE username = ?";
 
-  db.query(query, [req.body.username], (err, data) => {
+  db.query(sql, [req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length) return res.status(409).json("User already exists!");
 
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    const query = "INSERT INTO users (`username`, `email`, `password`, `name`) VALUES(?)";
+    const sql = "INSERT INTO users (`username`, `email`, `password`, `name`) VALUES(?)";
     const values = [req.body.username, req.body.email, hashedPassword, req.body.name];
 
-    db.query(query, [values], (err, data) => {
+    db.query(sql, [values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.status(200).json("User has been created.");
     });
@@ -23,9 +24,9 @@ export const register = (req, res) => {
 }
 
 export const login = (req, res) => {
-  const query = "SELECT * FROM users WHERE username = ?";
+  const sql = "SELECT * FROM users WHERE username = ?";
 
-  db.query(query, [req.body.username], (err, data) => {
+  db.query(sql, [req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json("User not found!");
 
@@ -33,7 +34,7 @@ export const login = (req, res) => {
 
     if (!checkPassword) return res.status(400).json("Wrong password or username!");
 
-    const token = jwt.sign({ id: data[0].id }, "secretkey");
+    const token = jwt.sign({ id: data[0].id }, process.env.SECRET_KEY);
 
     const { password, ...others } = data[0];
 

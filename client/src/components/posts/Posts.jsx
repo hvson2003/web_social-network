@@ -6,17 +6,17 @@ import { makeRequest } from "../../utils/axios";
 const Posts = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['posts'],
-    queryFn: () => makeRequest.get("/posts").then(res => res.data)
+    queryFn: () => makeRequest.get("/post").then(res => res.data)
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading posts: {error.message}</div>;
+  console.log(data);
 
   return (
     <div className="posts">
-      {data && data.map(post => (
-        <Post post={post} key={post.id} />
-      ))}
+      {isLoading
+        ? "loading"
+        : data && data.map(post => (<Post post={post} key={post.id} />
+        ))}
     </div>
   );
 }
