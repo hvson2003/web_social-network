@@ -5,24 +5,19 @@ import Friend from "../../assets/friend.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../utils/axios";
 const Share = () => {
   const [file, setFile] = useState(null);
   const [desc, setDesc] = useState("");
-
-  const upload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const { currentUser } = useContext(AuthContext);
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
+    (newPost) => {
+      return makeRequest.post("/post", newPost);
+    },
     {
       onSuccess: () => {
         // Invalidate and refetch
@@ -33,11 +28,7 @@ const Share = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    let imgUrl = "";
-    if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img: imgUrl });
-    setDesc("");
-    setFile(null);
+    mutation.mutate({ desc });
   };
 
   return (
