@@ -11,10 +11,12 @@ const Posts = () => {
 
   return (
     <div className="posts">
-      {isLoading
-        ? "loading"
-        : data && data.map(post => (<Post post={post} key={post.id} />
-        ))}
+      {error
+        ? "Something went wrong!"
+        : isLoading
+          ? "loading"
+          : data && data.map(post => (<Post post={post} key={post.id} />
+          ))}
     </div>
   );
 }
