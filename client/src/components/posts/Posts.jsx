@@ -3,10 +3,10 @@ import "./posts.scss";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../utils/axios";
 
-const Posts = () => {
+const Posts = ({ userId }) => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['posts'],
-    queryFn: () => makeRequest.get("/post").then(res => res.data)
+    queryFn: () => makeRequest.get("/post?userId=" + userId).then(res => res.data)
   });
 
   return (

@@ -34,6 +34,8 @@ const Comments = ({ postId }) => {
     setDesc("");
   };
 
+  if (error) return <div>Error loading comments</div>;
+
   return (
     <div className="comments">
       <div className="write">
