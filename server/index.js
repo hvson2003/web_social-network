@@ -7,6 +7,7 @@ import userRoutes from "./src/routes/user_route.js";
 import postRoutes from "./src/routes/post_route.js";
 import commentRoutes from "./src/routes/comment_route.js";
 import likeRoutes from "./src/routes/like_route.js";
+import relationshipRoutes from "./src/routes/relationship_route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import 'dotenv/config';
@@ -44,6 +45,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/like", likeRoutes);
+app.use("/api/relationship", relationshipRoutes);
 
 app.listen(8000, () => {
   console.log("API is working ...");
