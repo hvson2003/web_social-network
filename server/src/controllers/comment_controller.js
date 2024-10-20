@@ -17,8 +17,9 @@ export const addComment = (req, res) => {
   if (!token) return res.status(401).json("Not logged in!");
 
   jwt.verify(token, process.env.SECRET_KEY, (error, userInfo) => {
-    const sql = "INSERT INTO comments(`desc`,`postId`,`userId`,`createdAt`) VALUES(?)";
+    if (error) return res.status(403).json("Token is not valid!");
 
+    const sql = "INSERT INTO comments(`desc`,`postId`,`userId`,`createdAt`) VALUES(?)";
     const values = [
       req.body.desc,
       req.body.postId,
