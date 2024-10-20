@@ -24,7 +24,7 @@ const Post = ({ post }) => {
               <Link to={`/profile/${post.userId}`} style={{ textDecoration: "none", color: "inherit" }}>
                 <span>{post.name}</span>
               </Link>
-              <span className="date">{ moment(post.createdAt).fromNow() }</span>
+              <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon />
@@ -49,7 +49,7 @@ const Post = ({ post }) => {
             Share
           </div>
         </div>
-        {commentOpen && <Comments />}
+        {commentOpen && <Comments postId={post.id} />}
       </div>
     </div >
   )
