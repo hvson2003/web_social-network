@@ -10,6 +10,7 @@ import likeRoutes from "./src/routes/like_route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import 'dotenv/config';
+import multer from "multer";
 
 // middlewares
 app.use((req, res, next) => {
@@ -21,6 +22,22 @@ app.use(cors({
   origin: process.env.CLIENT_URL,
 }));
 app.use(cookieParser());
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/public/upload')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname)
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  const file = req.file;
+  res.status(200).json(file.filename);
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
