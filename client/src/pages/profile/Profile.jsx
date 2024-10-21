@@ -4,10 +4,12 @@ import Posts from "../../components/posts/Posts";
 import { makeRequest } from '../../utils/axios';
 import { useLocation } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
+import Update from '../../components/update/Update';
 
 const Profile = () => {
+  const [openUpdate, setOpenUpdate] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
   const userId = Number(useLocation().pathname.split("/")[2])
@@ -48,8 +50,8 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="images">
-        <img src={data.coverPic} alt="" className="cover" />
-        <img src={data.profilePic} alt="" className="profilePic" />
+        <img src={"/upload/" + data.coverPic} alt="" className="cover" />
+        <img src={"/upload/" + data.profilePic} alt="" className="profilePic" />
       </div>
 
       <div className="profileContainer">
@@ -88,7 +90,7 @@ const Profile = () => {
             {reIsLoading
               ? "loading"
               : userId === currentUser.id ? (
-                <button>update</button>
+                <button onClick={() => setOpenUpdate(true)}>update</button>
               ) : (
                 <button onClick={handleFollow}>
                   {relationshipData.includes(currentUser.id)
@@ -104,8 +106,9 @@ const Profile = () => {
             <MoreVert />
           </div>
         </div>
-        <Posts userId={ userId } />
+        <Posts userId={userId} />
       </div>
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
     </div>
   )
 }
