@@ -1,5 +1,5 @@
 import express from "express";
-import { getRelationships, addRelationship, deleteRelationship } from "../controllers/relationship_controller.js";
+import { getRelationships, addRelationship, deleteRelationship } from "../controllers/RelationshipController.js";
 
 const router = express.Router();
 

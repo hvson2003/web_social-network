@@ -25,7 +25,7 @@ export const addLike = (req, res) => {
       userInfo.id,
     ]
 
-    db.query(sql, [values], (error, data) => {
+    db.query(sql, [values], (error) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("Post has been liked");
     });
@@ -41,7 +41,7 @@ export const deleteLike = (req, res) => {
 
     const sql = "DELETE FROM likes WHERE `postId` = ? AND `userId` = ?";
 
-    db.query(sql, [req.query.postId, userInfo.id], (error, data) => {
+    db.query(sql, [req.query.postId, userInfo.id], (error) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("Post has been disliked");
     });

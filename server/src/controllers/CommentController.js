@@ -27,7 +27,7 @@ export const addComment = (req, res) => {
       moment(Date.now()).format("YYYY-MM-DD hh:mm:ss"),
     ]
 
-    db.query(sql, [values], (error, data) => {
+    db.query(sql, [values], (error) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("Comment has been created");
     });

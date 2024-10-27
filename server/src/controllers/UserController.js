@@ -12,7 +12,7 @@ export const getUser = (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const { password, ...info } = data[0];
+    const { password: password, ...info } = data[0];
     return res.json(info);
   });
 };

@@ -24,7 +24,7 @@ export const addRelationship = (req, res) => {
       req.body.userId,
     ];
 
-    db.query(sql, [values], (error, data) => {
+    db.query(sql, [values], (error) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("Following");
     });
@@ -40,7 +40,7 @@ export const deleteRelationship = (req, res) => {
 
     const sql = "DELETE FROM relationships WHERE `followerUserId` = ? AND `followedUserId` = ?";
 
-    db.query(sql, [userInfo.id, req.query.userId], (error, data) => {
+    db.query(sql, [userInfo.id, req.query.userId], (error) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("Unfollow");
     });
